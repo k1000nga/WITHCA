@@ -17,17 +17,34 @@ body {
 }
 
 
-/* 상단 타이틀 */
+/* ===== 상단 ===== */
+
 header {
-    text-align: center;
     padding: 50px 20px;
+}
+
+
+.profile-area {
+    max-width: 900px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 50px;
+}
+
+
+.title-box {
+    text-align: left;
 }
 
 
 h1 {
     margin: 0;
     color: #5aaee6;
-    font-size: 30px;
+    font-size: 32px;
 }
 
 
@@ -39,62 +56,88 @@ h1 {
 }
 
 
-/* 내용 */
-.container {
-    max-width: 700px;
-    margin: 35px auto;
-    padding: 0 20px;
-}
-
-
-.card {
-    background: white;
-    border-radius: 20px;
-    padding: 22px;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-}
-
-
-.date {
-    color: #5aaee6;
-    font-weight: bold;
-}
-
-
-h3 {
-    margin: 12px 0;
-}
-
-
-/* 마지막 문구 */
-.message {
-    text-align: center;
-    line-height: 1.8;
-    color: #777;
-}
-
-
-.message {
-    text-align: center;
-    line-height: 1.8;
-    color: #777;
-}
-
 
 .profile {
     width: 200px;
     height: 250px;
+
     object-fit: cover;
-    border-radius: 20px;
+
+    border-radius: 25px;
 }
+
+
+
+/* ===== 스케줄 ===== */
+
+.container {
+
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    padding: 0 20px;
+
+}
+
+
+
+.card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.08);
+
+}
+
+
+
+.date {
+
+    color: #5aaee6;
+
+    font-weight: bold;
+
+}
+
+
+
+h3 {
+
+    margin: 12px 0;
+
+}
+
+
+
+/* ===== 하단 ===== */
 
 
 footer {
+
     text-align: center;
-    padding: 35px;
-    color: #999;
+
+    padding: 40px;
+
+    color: #888;
+
 }
+
+
+
+.logo {
+
+    width: 90px;
+
+    margin-bottom: 10px;
+
 }
 
 
@@ -108,22 +151,37 @@ footer {
 
 <header>
 
+
 <div class="profile-area">
 
-<div>
-<h1>김청아 배우님 스케줄</h1>
+
+<div class="title-box">
+
+
+<h1>
+김청아 배우님 스케줄
+</h1>
+
 
 <p class="subtitle">
 김청아 배우님을 위한<br>
 작은 기록들이 오래 남기를 ♡
 </p>
+
+
 </div>
+
 
 <img src="common.jpg" class="profile">
 
+
 </div>
 
+
 </header>
+
+
+
 
 <div class="container">
 
@@ -134,9 +192,11 @@ footer {
 2026.04.20 ~ 2026.04.26
 </p>
 
+
 <h3>
 뮤지컬 &lt;A여고 사서의 영광과 비극&gt;
 </h3>
+
 
 <p>
 청아환희와 함께한 소중한 시간
@@ -146,15 +206,18 @@ footer {
 
 
 
+
 <div class="card">
 
 <p class="date">
 공연 일정
 </p>
 
+
 <h3>
 Coming Soon ✨
 </h3>
+
 
 <p>
 김청아 배우님의 새로운 순간을 기록합니다.
@@ -164,10 +227,17 @@ Coming Soon ✨
 
 
 
+
 <div class="card">
 
-<p class="message">
+<h3>
+기록
+</h3>
+
+
+<p>
 푸른빛으로 물들었던 시간들처럼<br>
+
 김청아 배우님의 모든 순간을 기록합니다.
 </p>
 
@@ -179,8 +249,19 @@ Coming Soon ✨
 
 
 
+
+
 <footer>
+
+
+<img src="logo.png" class="logo">
+
+
+<br>
+
 WITH CA ♡
+
+
 </footer>
 
 
