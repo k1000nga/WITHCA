@@ -264,14 +264,14 @@ footer {
 오늘의 스케줄
 </p>
 
-<h3>
+<h3 id="today-schedule">
 Coming Soon ✨
 </h3>
 
-<p>
+<p id="today-date">
 다음 무대를 기다립니다.
 </p>
-    
+
 </div>
 
 
@@ -516,6 +516,43 @@ EVENT RECORD
 <div>WITH CA ♡</div>
 
 </footer>
+
+
+<script>
+
+const schedule = {
+    "2026-10-01": "20:00",
+    "2026-10-03": "19:00",
+    "2026-10-04": "18:00",
+    "2026-10-09": "19:00",
+    "2026-10-10": "18:00",
+    "2026-10-14": "20:00",
+    "2026-10-16": "20:00",
+    "2026-10-21": "20:00",
+    "2026-10-22": "20:00",
+    "2026-10-24": "19:00",
+    "2026-10-29": "20:00",
+    "2026-10-31": "15:00, 19:00"
+};
+
+const today = new Date();
+
+const year = today.getFullYear();
+const month = String(today.getMonth() + 1).padStart(2, "0");
+const day = String(today.getDate()).padStart(2, "0");
+
+const todayKey = `${year}-${month}-${day}`;
+
+if (schedule[todayKey]) {
+    document.getElementById("today-schedule").textContent =
+        "뮤지컬 <이끼숲> - 은희 역";
+
+    document.getElementById("today-date").innerHTML =
+        `${month}.${day} 오늘 공연<br>${schedule[todayKey]}`;
+}
+
+</script>
+
 
 </body>
 
