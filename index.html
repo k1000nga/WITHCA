@@ -558,8 +558,8 @@ if (schedule[todayKey]) {
     document.getElementById("today-schedule").textContent =
         "뮤지컬 <이끼숲> - 은희 역";
 
-    document.getElementById("today-date").innerHTML =
-        `${month}.${day} 오늘 공연<br>${schedule[todayKey]}`;
+ document.getElementById("today-date").innerHTML =
+    `${month}.${day} ${["일","월","화","수","목","금","토"][today.getDay()]} ${schedule[todayKey]}`;
   } else {
     document.getElementById("today-schedule").textContent =
         "오늘은 휴식중 zz 💤";
