@@ -536,7 +536,14 @@ const schedule = {
     "2026-10-22": "20:00",
     "2026-10-24": "19:00",
     "2026-10-29": "20:00",
-    "2026-10-31": "15:00, 19:00"
+    "2026-10-31": "15:00, 19:00",
+    "2026-11-04": "20:00",
+    "2026-11-05": "20:00",
+    "2026-11-08": "14:00",
+    "2026-11-10": "20:00",
+    "2026-11-13": "20:00",
+    "2026-11-18": "20:00",
+    "2026-11-22": "14:00, 18:00"
 };
 
 const today = new Date();
@@ -553,12 +560,24 @@ if (schedule[todayKey]) {
 
     document.getElementById("today-date").innerHTML =
         `${month}.${day} 오늘 공연<br>${schedule[todayKey]}`;
-} else {
+  } else {
     document.getElementById("today-schedule").textContent =
-        "오늘도 열심히 이끼숲 연습중 🌳";
+        "오늘은 휴식중 zz 💤";
 
-    document.getElementById("today-date").textContent =
-        "은희를 기다려주세요 ♡";
+    const nextSchedule = Object.keys(schedule)
+        .filter(date => date > todayKey)
+        .sort()[0];
+
+    if (nextSchedule) {
+        const nextMonth = nextSchedule.slice(5, 7);
+        const nextDay = nextSchedule.slice(8, 10);
+
+        document.getElementById("today-date").innerHTML =
+            `다음 공연에서 만나요!<br>다음 스케줄 : ${nextMonth}.${nextDay} ${schedule[nextSchedule]}`;
+    } else {
+        document.getElementById("today-date").textContent =
+            "다음 공연에서 만나요!";
+    }
 }
 </script>
 
