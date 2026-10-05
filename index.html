@@ -558,9 +558,9 @@ if (schedule[todayKey]) {
     document.getElementById("today-schedule").textContent =
         "뮤지컬 <이끼숲> - 은희 역";
 
- document.getElementById("today-date").innerHTML =
+document.getElementById("today-date").innerHTML =
     `${month}.${day} ${["일","월","화","수","목","금","토"][today.getDay()]} ${schedule[todayKey]}`;
-  } else {
+} else {
     document.getElementById("today-schedule").textContent =
         "오늘은 휴식중 zz 💤";
 
@@ -569,19 +569,16 @@ if (schedule[todayKey]) {
         .sort()[0];
 
     if (nextSchedule) {
+        const nextDate = new Date(nextSchedule + "T00:00:00");
         const nextMonth = nextSchedule.slice(5, 7);
         const nextDay = nextSchedule.slice(8, 10);
+        const nextWeekday =
+            ["일","월","화","수","목","금","토"][nextDate.getDay()];
 
         document.getElementById("today-date").innerHTML =
-            `다음 공연에서 만나요!<br>다음 스케줄 : ${nextMonth}.${nextDay} ${schedule[nextSchedule]}`;
+            `다음 공연에서 만나요!<br>다음 스케줄 : ${nextMonth}.${nextDay} ${nextWeekday} ${schedule[nextSchedule]}`;
     } else {
         document.getElementById("today-date").textContent =
             "다음 공연에서 만나요!";
     }
 }
-</script>
-
-
-</body>
-
-</html>
