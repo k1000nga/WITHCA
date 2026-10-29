@@ -523,64 +523,86 @@ EVENT RECORD
 
 
 <script>
-
 const schedule = {
-    "2026-10-01": "20:00",
-    "2026-10-03": "19:00",
-    "2026-10-04": "18:00",
-    "2026-10-09": "15:00",
-    "2026-10-10": "19:00",
-    "2026-10-14": "20:00",
-    "2026-10-16": "20:00",
-    "2026-10-21": "20:00",
-    "2026-10-22": "20:00",
-    "2026-10-24": "19:00",
-    "2026-10-29": "20:00",
-    "2026-10-31": "15:00, 19:00",
-    "2026-11-04": "20:00",
-    "2026-11-05": "20:00",
-    "2026-11-08": "14:00",
-    "2026-11-10": "20:00",
-    "2026-11-13": "20:00",
-    "2026-11-18": "20:00",
-    "2026-11-22": "14:00, 18:00"
+    "2026-10-01": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-10-03": [{ name: "뮤지컬 <이끼숲>", times: ["19:00"] }],
+    "2026-10-04": [{ name: "뮤지컬 <이끼숲>", times: ["18:00"] }],
+    "2026-10-09": [{ name: "뮤지컬 <이끼숲>", times: ["15:00"] }],
+    "2026-10-10": [{ name: "뮤지컬 <이끼숲>", times: ["19:00"] }],
+    "2026-10-14": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-10-16": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-10-21": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-10-22": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-10-24": [{ name: "뮤지컬 <이끼숲>", times: ["19:00"] }],
+    "2026-10-29": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-10-31": [{ name: "뮤지컬 <이끼숲>", times: ["15:00", "19:00"] }],
+    "2026-11-04": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-11-05": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-11-08": [{ name: "뮤지컬 <이끼숲>", times: ["14:00"] }],
+    "2026-11-10": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-11-13": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-11-14": [{ name: "결혼하지 않는 세 여자", times: ["19:00"], location: "김해" }],
+    "2026-11-18": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-11-22": [{ name: "뮤지컬 <이끼숲>", times: ["14:00", "18:00"] }],
+    "2026-11-27": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-11-29": [{ name: "뮤지컬 <이끼숲>", times: ["14:00"] }],
+    "2026-12-04": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-12-05": [{ name: "뮤지컬 <이끼숲>", times: ["19:00"] }],
+    "2026-12-06": [{ name: "뮤지컬 <이끼숲>", times: ["18:00"] }],
+    "2026-12-09": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-12-11": [{ name: "뮤지컬 <이끼숲>", times: ["20:00"] }],
+    "2026-12-13": [{ name: "뮤지컬 <이끼숲>", times: ["14:00"] }]
 };
 
 const today = new Date();
-
 const year = today.getFullYear();
 const month = String(today.getMonth() + 1).padStart(2, "0");
 const day = String(today.getDate()).padStart(2, "0");
-
 const todayKey = `${year}-${month}-${day}`;
+const weekdays = ["일", "월", "화", "수", "목", "금", "토"];
 
-if (schedule[todayKey]) {
-    document.getElementById("today-schedule").textContent =
-        "뮤지컬 <이끼숲> - 은희 역";
+const scheduleTitle = document.getElementById("today-schedule");
+const scheduleDate = document.getElementById("today-date");
 
-document.getElementById("today-date").innerHTML =
-    `${month}.${day} ${["일","월","화","수","목","금","토"][today.getDay()]} ${schedule[todayKey]}`;
+function formatDate(dateKey, times) {
+    const date = new Date(dateKey + "T00:00:00");
+    return `${dateKey.slice(5, 7)}.${dateKey.slice(8, 10)} ${weekdays[date.getDay()]} · ${times.join(", ")}`;
+}
+
+function formatItems(dateKey, items) {
+    return items.map(item => {
+        const name = item.name.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        return `
+            <div style="margin-bottom: 10px;">
+                <div style="font-weight: 600;">${name}</div>
+                <div style="font-size: 14px; color: #888; margin-top: 5px;">
+                    ${formatDate(dateKey, item.times)}${item.location ? " · " + item.location : ""}
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+const todaySchedule = schedule[todayKey];
+
+if (todaySchedule) {
+    scheduleTitle.textContent = "오늘의 공연";
+    scheduleDate.innerHTML = formatItems(todayKey, todaySchedule);
 } else {
-    document.getElementById("today-schedule").textContent =
-        "오늘은 휴식중 zz 💤";
+    scheduleTitle.textContent = "오늘은 휴식중 zz 💤";
 
-    const nextSchedule = Object.keys(schedule)
+    const nextDate = Object.keys(schedule)
         .filter(date => date > todayKey)
         .sort()[0];
 
-    if (nextSchedule) {
-        const nextDate = new Date(nextSchedule + "T00:00:00");
-        const nextMonth = nextSchedule.slice(5, 7);
-        const nextDay = nextSchedule.slice(8, 10);
-        const nextWeekday =
-            ["일","월","화","수","목","금","토"][nextDate.getDay()];
-
-        document.getElementById("today-date").innerHTML =
-            `다음 공연에서 만나요!<br>다음 스케줄 : ${nextMonth}.${nextDay} ${nextWeekday} ${schedule[nextSchedule]}`;
+    if (nextDate) {
+        scheduleDate.innerHTML =
+            `<div style="margin-bottom: 8px; color: #888;">다음 공연에서 만나요!</div>` +
+            formatItems(nextDate, schedule[nextDate]).replace(
+                /<div style="font-weight: 600;">/,
+                '<div style="font-weight: 600;">다음 스케줄 · '
+            );
     } else {
-        document.getElementById("today-date").textContent =
-            "다음 공연에서 만나요!";
-      }
+        scheduleDate.textContent = "다음 공연에서 만나요!";
+    }
 }
-
 </script>
